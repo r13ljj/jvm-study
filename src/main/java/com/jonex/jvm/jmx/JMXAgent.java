@@ -2,6 +2,7 @@ package com.jonex.jvm.jmx;
 
 import com.jonex.jvm.jmx.service.HelloService;
 import com.jonex.jvm.jmx.service.impl.HelloServiceImpl;
+import com.sun.jdmk.comm.HtmlAdaptorServer;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
@@ -22,7 +23,7 @@ public class JMXAgent {
         // alpha:name=HelloWorld的名字是有一定规则的，格式为：“域名:name=MBean名称”，域名和MBean名称都可以任意取。
         ObjectName adapterName = new ObjectName("HelloAgent:name=htmladapter,port=8082"); //
         HtmlAdaptorServer adapter = new HtmlAdaptorServer();
-        server.registerMBean(adapter, adapterName);
+        mbs.registerMBean(adapter, adapterName);
         adapter.start();
         System.out.println("start.....");
     }
